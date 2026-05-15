@@ -56,6 +56,7 @@ function trackConversion(actionName) {
       send_to: `${GOOGLE_ADS_ID}/${GOOGLE_CONVERSION_LABEL}`,
       value: 1.0,
       currency: "USD",
+      transaction_id: `kobraa_${Date.now()}`,
     });
   }
 
