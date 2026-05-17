@@ -101,21 +101,13 @@ async function submitEmailLead(emailValue) {
 
   if (!cleanEmail || !cleanEmail.includes("@")) {
     alert("Please enter a valid email first.");
-    return;
+    return false;
   }
+
   await trackConversion("footer_join_click");
 
-  const subject = encodeURIComponent("General Kobraa Email Signup");
-  const body = encodeURIComponent(
-    `A visitor wants to join the General Kobraa email list.
-
-Visitor email: ${cleanEmail}`
-  );
-
-  const gmailLink =
-    `https://mail.google.com/mail/?view=cm&fs=1&to=troybaby80@gmail.com&su=${subject}&body=${body}`;
-
-  window.open(gmailLink, "_blank", "noopener,noreferrer");
+  alert("Thank you. Your email has been received.");
+  return true;
 }
 
 function Hotspot({ label, style, onClick }) {
@@ -279,7 +271,10 @@ export default function App() {
           type="button"
           aria-label="Submit email"
           title="Submit email"
-          onClick={() => submitEmailLead(email)}
+          onClick={async () => {
+            const success = await submitEmailLead(email);
+            if (success) setEmail("");
+          }}
           style={{
             position: "absolute",
             zIndex: 61,
