@@ -436,7 +436,7 @@ export default function App() {
             <h1 style={{ margin: 0, fontSize: "38px", fontWeight: 900, textTransform: "uppercase" }}>Privacy Policy</h1>
             <div style={{ height: "3px", width: "120px", background: "#ff0000", margin: "16px 0 22px" }} />
             <p><strong>General Kobraa</strong> respects visitor privacy. This website is used to share official General Kobraa links, content, updates, and contact options.</p>
-            <p><strong>Information collected:</strong> If you type an email into the Join section, that email is submitted through Formspree and used only so you can contact or join General Kobraa updates. The site may also coll
+            <p><strong>Information collected:</strong> If you type an email into the Join section, that email is submitted through Formspree and used only so you can contact or join General Kobraa updates. The site may also collect basic analytics and advertising interaction data through Google Ads tags.</p>
             <p><strong>Google Ads and conversion tracking:</strong> This website uses Google Ads tracking to measure legitimate contact or signup actions. Google may use cookies or similar technology to measure ad performance.</p>
             <p><strong>External links:</strong> This site links to YouTube, Instagram, X, Facebook, TikTok, and email. Those platforms have their own privacy policies.</p>
             <p><strong>Contact:</strong> For privacy questions or removal requests, email <strong>troybaby80@gmail.com</strong>.</p>
