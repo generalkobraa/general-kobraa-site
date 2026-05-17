@@ -42,28 +42,46 @@ function installGoogleTag(id) {
 }
 
 function trackConversion(actionName) {
-  if (typeof window === "undefined" || !window.gtag) return;
+  return new Promise((resolve) => {
+    if (typeof window === "undefined" || !window.gtag) {
+      resolve(false);
+      return;
+    }
 
-  
-  const conversionActions = [
-    "email_input_click",
-    "footer_join_click",
-    "contact_submit_click",
-  ];
+    const conversionActions = [
+      "email_input_click",
+      "footer_join_click",
+      "contact_submit_click",
+    ];
 
-  if (conversionActions.includes(actionName)) {
+    window.gtag("event", actionName, {
+      event_category: "engagement",
+      event_label: actionName,
+    });
+
+    if (!conversionActions.includes(actionName)) {
+      resolve(true);
+      return;
+    }
+
+    let finished = false;
+    const finish = () => {
+      if (!finished) {
+        finished = true;
+        resolve(true);
+      }
+    };
+
     window.gtag("event", "conversion", {
       send_to: `${GOOGLE_ADS_ID}/${GOOGLE_CONVERSION_LABEL}`,
       value: 1.0,
       currency: "USD",
       transaction_id: `kobraa_${Date.now()}`,
+      event_callback: finish,
+      event_timeout: 2000,
     });
-  }
 
-  
-  window.gtag("event", actionName, {
-    event_category: "engagement",
-    event_label: actionName,
+    setTimeout(finish, 2100);
   });
 }
 
@@ -78,15 +96,14 @@ function openLink(url, actionName) {
   window.open(url, "_blank", "noopener,noreferrer");
 }
 
-function submitEmailLead(emailValue) {
+async function submitEmailLead(emailValue) {
   const cleanEmail = String(emailValue || "").trim();
 
   if (!cleanEmail || !cleanEmail.includes("@")) {
     alert("Please enter a valid email first.");
     return;
   }
-
-  trackConversion("footer_join_click");
+  await trackConversion("footer_join_click");
 
   const subject = encodeURIComponent("General Kobraa Email Signup");
   const body = encodeURIComponent(
