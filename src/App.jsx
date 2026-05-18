@@ -115,6 +115,7 @@ async function submitEmailLead(emailValue) {
       body: JSON.stringify({
         email: cleanEmail,
         source: "General Kobraa website",
+        form_name: "footer_lead_form",
         submittedAt: new Date().toISOString(),
       }),
     });
@@ -268,55 +269,64 @@ export default function App() {
         <Hotspot label="Follow Now" style={{ left: "69.0%", top: "61.9%", width: "18.9%", height: "3.4%" }} onClick={() => openLink(SOCIAL_LINKS.tiktok, "tiktok_follow_click")} />
 
         {/* FOOTER CONTACT */}
-        <input
-          type="email"
-          aria-label="Email address"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-          placeholder=""
-          style={{
-            position: "absolute",
-            zIndex: 60,
-            left: "66.4%",
-            top: "94.35%",
-            width: "20.0%",
-            height: "2.85%",
-            background: "transparent",
-            border: "none",
-            color: "white",
-            fontSize: "clamp(10px, 1.2vw, 16px)",
-            padding: "0 12px",
-            outline: "none",
-            boxSizing: "border-box",
-            lineHeight: "normal",
-          }}
-        />
-        <button
-          type="button"
-          aria-label="Submit email"
-          title="Submit email"
-          onClick={async () => {
+        <form
+          name="footer_lead_form"
+          aria-label="Join General Kobraa email list"
+          onSubmit={async (event) => {
+            event.preventDefault();
             const success = await submitEmailLead(email);
             if (success) setEmail("");
           }}
-          style={{
-            position: "absolute",
-            zIndex: 61,
-            left: "87.4%",
-            top: "94.35%",
-            width: "7.8%",
-            height: "2.85%",
-            background: "transparent",
-            border: "none",
-            color: "transparent",
-            cursor: "pointer",
-            padding: 0,
-            margin: 0,
-            outline: "none",
-          }}
         >
-          Join
-        </button>
+          <input
+            type="email"
+            name="email"
+            aria-label="Email address"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            placeholder=""
+            autoComplete="email"
+            required
+            style={{
+              position: "absolute",
+              zIndex: 60,
+              left: "66.4%",
+              top: "94.35%",
+              width: "20.0%",
+              height: "2.85%",
+              background: "transparent",
+              border: "none",
+              color: "white",
+              fontSize: "clamp(10px, 1.2vw, 16px)",
+              padding: "0 12px",
+              outline: "none",
+              boxSizing: "border-box",
+              lineHeight: "normal",
+            }}
+          />
+          <button
+            type="submit"
+            aria-label="Submit email"
+            title="Submit email"
+            style={{
+              position: "absolute",
+              zIndex: 61,
+              left: "87.4%",
+              top: "94.35%",
+              width: "7.8%",
+              height: "2.85%",
+              background: "transparent",
+              border: "none",
+              color: "transparent",
+              cursor: "pointer",
+              padding: 0,
+              margin: 0,
+              outline: "none",
+            }}
+          >
+            Join
+          </button>
+        </form>
       </section>
 
       <div
