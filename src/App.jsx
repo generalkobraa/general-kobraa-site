@@ -13,7 +13,7 @@ const SOCIAL_LINKS = {
 
 // GOOGLE ADS
 const GOOGLE_ADS_ID = "AW-17170342680";
-const GOOGLE_CONVERSION_LABEL = "gVdICK2TkawcEJjGuvs_";
+const GOOGLE_CONVERSION_LABEL = "b3pECJaUuK4cEJjGuvs_";
 
 // HERO IMAGE
 const HERO_PATH = "/hero.png";
